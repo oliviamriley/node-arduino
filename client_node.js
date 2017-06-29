@@ -5,7 +5,6 @@ var socket = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 socket.on('connection', function(connection) {
 	console.log("Connected");
 	initDataStream(streamFromSerial, connection);
-
 });
 
 //connectToArduino applies some function to every port with a listed manufacturer 
