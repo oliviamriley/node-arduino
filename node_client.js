@@ -3,11 +3,10 @@ var WebSocket = require('ws');
 var socket = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 
 socket.on('connection', function(connection) {
-	console.log("Connected");
+	console.log("WebSocket connection established!");
 	initDataStream(streamFromSerial, connection);
 });
 
-//connectToArduino applies some function to every port with a listed manufacturer 
 function initDataStream(openSerialConn, ws_connection) {
 
 	SerialPort.list(function(err, ports) {
@@ -30,10 +29,16 @@ function streamFromSerial(port_name, ws_connection) {
 	});
 
 	Arduino.on('data', function(data) {
-		try {
-			ws_connection.send(data);
-		} catch(err) {
-			console.log(err);
+		if (ws_connection.readyState === 1) {
+			try {
+				ws_connection.send(data);
+			} catch(err) {
+				console.log(err);
+			}
+		} else {
+			console.log("Websocket connection was closed!");
+			Arduino.flush();
+			Arduino.close(); //flush and close Arduino connection on ws disconnect
 		}
 	});
 }
