@@ -5,12 +5,13 @@ var data = [[]],
 	initial_time = time.getTime();
 
 layout = {
-  title:'Line Plot',
+  title:'node-arduino',
   height: 400,
   width: 480,
   xaxis: {
-  	showticklabels: false
-  }
+  	showticklabels: false,
+  },
+  showlegend: true
 };
 
 //setup empty graph (for cosmetic UI purposes)
@@ -20,7 +21,9 @@ socket = new WebSocket("ws://127.0.0.1:8080");
 socket.onmessage = function(event) {
 	console.log(event.data);
 	var new_data = parseMessage(event.data);
-	addData(new_data);
+	if (new_data.value.trim().length > 0) {
+		addData(new_data);
+	}
 }
 
 function parseMessage(message) {
@@ -50,7 +53,7 @@ function addData(new_data) {
 		is_new_data = true,
 		new_trace = {},
 		new_time =  new Date(), 
-		time_on_add = new_time.getTime(),
+		time_on_add = new_time.getTime() - initial_time,
 		i = 0;
 
 	for(i = 0; i < data.length; i++) { //check if the header on new data matches an existing trace
@@ -81,10 +84,14 @@ function addData(new_data) {
 		Plotly.update('myChart', data, layout, {displayModeBar: false});  //update() will only add to existing traces 
 	}
 
-	window.onbeforeunload = closeConnection; //close websocket on browser close or refresh
-
-	function closeConnection() {
-		socket.onclose = function(){}; //disable default handler
-		socket.close()
+	if (time_on_add > layout.xaxis.range[1]) {
+		layout.xaxis.range[1] *= 3; //arbitrary
 	}
+}
+
+window.onbeforeunload = closeConnection; //close websocket on browser close or refresh
+
+function closeConnection() {
+	socket.onclose = function(){}; //disable default handler
+	socket.close()
 }
