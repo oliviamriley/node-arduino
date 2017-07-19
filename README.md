@@ -5,18 +5,20 @@ Node.js app to visualize Arduino data in-browser
 
 ### Windows
 
-1. Download the [Windows version of node-arduino](https://community.csdt.rpi.edu/media/filer_public/6c/9a/6c9a7df2-8e42-4485-962f-61eac43a6307/node-arduino_windows_100.zip)
-2. Run the nodejs installer (it will look like node-vXXXX.msi), and click "Next" until the installer finishes
-3. Click install.bat
-4. You're done! Whenever you want to run the app from now on, just click node-arduino.bat
+1. Download the Windows installer by clicking [here](https://community.csdt.rpi.edu/media/filer_public/99/b9/99b94be8-9378-4701-bbd6-df4a4453af0b/node-arduino-windows-102.zip).
+2. Click install.bat, and proceed through the NodeJS installer window.
+3. Launch the application by clicking node-arduino.bat. 
 
 
 ### Ubuntu
 
-1. Download the [Ubuntu version of node-arduino](https://community.csdt.rpi.edu/media/filer_public/3c/f5/3cf5d7d6-9651-4b0a-b8ff-b9e98e521385/node-arduino_ubuntu_100.zip)
-2. Click install.sh, and enter the root password when prompted
+1. Download the Ubuntu installer by clicking [here](https://community.csdt.rpi.edu/media/filer_public/3c/f5/3cf5d7d6-9651-4b0a-b8ff-b9e98e521385/node-arduino_ubuntu_100.zip).
+2. Click install.sh, and enter the root password when prompted.
 3. Run node-arduino from the command line with "nodejs node-client.js"
 
+### macOS
+
+At this time, there is no macOS installer for node-arduino.
 
 
 ## Running node-arduino
