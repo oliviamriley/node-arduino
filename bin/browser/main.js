@@ -1,5 +1,6 @@
 var data = [[]],
 	terminalDisplay = {},
+	autoscroll = true,
 	layout = {},
 	socket = {},
 	time = new Date(),
@@ -18,24 +19,40 @@ layout = {
 //setup empty graph (for cosmetic UI purposes)
 Plotly.newPlot('myChart', data, layout, {displayModeBar: false});
 
+terminalDisplay = document.getElementById("terminalDisplay");
 
-function terminalLoaded() {
-	terminalDisplay = getTerminalElementById("terminalDisplay");
+function scroll(div) {
+	if (autoscroll) {
+		$('#' + div).animate({
+			scrollTop: $('#' + div)[0].scrollHeight
+		}, 800);
+	}
 }
+
+//disable auto-scrolling on button click, scroll to bottom immediately when enabled
+$("#toggleScroll").click(function() {
+	autoscroll = !autoscroll;
+	scroll("terminalDisplay");
+});
 
 
 socket = new WebSocket("ws://127.0.0.1:8080"); //attempt WebSocket connection with localhost on page load
 socket.onmessage = function receiveMessage(event) {
-	console.log(event.data);
+	var new_data = {},
+	entry = {};
 
 	entry = document.createElement('li');
 	entry.appendChild(document.createTextNode(event.data));
-	terminalDisplay.appendChild(entry);
+	terminalDisplay.appendChild(entry);        //add new data point to scrolling terminalDisplay div
+	
+	scroll("terminalDisplay");
 
-	var new_data = parseMessage(event.data);
+	new_data = parseMessage(event.data);
 	if (new_data.value.trim().length > 0) {    //sanity check; does the data received have an actual value, or is it just whitespace (common on startup)
 		addData(new_data);
 	}
+
+	console.log(event.data);
 }
 
 function parseMessage(message) {

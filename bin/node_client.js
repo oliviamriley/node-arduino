@@ -1,21 +1,43 @@
 var SerialPort = require('serialport');
 var WebSocket = require('ws');
 var socket = new WebSocket.Server({host: '127.0.0.1', port: 8080});
+var manual = false;
+
+if(process.argv[2] == "-p" || process.argv[2] == "--port") {
+	if(process.argv[3]) {
+		manual = true;
+	}
+	else {
+		console.log("Err: no port name supplied with manual flag.")
+		process.exit(0);
+	}
+}
+
 
 socket.on('connection', function(connection) {
 	console.log("WebSocket connection established.");
+	connection.send(45);
 	initDataStream(streamFromSerial, connection);
 });
 
 function initDataStream(openSerialConn, ws_connection) {
 
-	SerialPort.list(function(err, ports) {
-		ports.forEach(function(port) {
-			if(port.manufacturer && port.manufacturer.indexOf("Arduino") !== -1) { //connect to the first device we see that has "Arduino" in the manufacturer name
-				streamFromSerial(port.comName, ws_connection)
-			}
+	var portName = "";
+
+	if(process.argv[2] && (process.argv[2] == "-p" || process.argv[2] == "--port")) {
+		portName = process.argv[3];
+		streamFromSerial(portName, ws_connection);
+	} else {
+		SerialPort.list(function(err, ports) {
+			ports.forEach(function(port) {
+				if(port.manufacturer && port.manufacturer.indexOf("Arduino") !== -1) { //connect to the first device we see that has "Arduino" in the manufacturer name
+					portName = port.comName;
+					streamFromSerial(portName, ws_connection);
+				}
+			});
 		});
-	});
+	}
+
 }
 
 function streamFromSerial(port_name, ws_connection) {

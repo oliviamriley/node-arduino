@@ -31,7 +31,19 @@ At this time, there is no macOS installer for node-arduino.
 3. Run node_client.js 
 4. Open browser_client.html
 
+### Command-line flags
 
+#### -p
+
+Set the port to connect to, rather than having the program automatically choose.
+Useful for use cases when there are multiple Arduinos connected to one PC. 
+
+Usage: 
+	"nodejs node_client.js -p /dev/ttyACM0"
+	"node node_client.js -p COM1"
+
+
+	
 ## Writing Arduino sketches for node-arduino
 
 node-arduino will recieve any information sent over the serial connection--just use the built-in Serial.println() function. 
