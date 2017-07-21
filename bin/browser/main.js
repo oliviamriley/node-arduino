@@ -18,12 +18,20 @@ layout = {
 //setup empty graph (for cosmetic UI purposes)
 Plotly.newPlot('myChart', data, layout, {displayModeBar: false});
 
-terminalDisplay = document.getElementById('terminalDisplay');
+
+function terminalLoaded() {
+	terminalDisplay = getTerminalElementById("terminalDisplay");
+}
+
 
 socket = new WebSocket("ws://127.0.0.1:8080"); //attempt WebSocket connection with localhost on page load
-socket.onmessage = function(event) {
+socket.onmessage = function receiveMessage(event) {
 	console.log(event.data);
-	terminalDisplay.innerHTML = event.data;
+
+	entry = document.createElement('li');
+	entry.appendChild(document.createTextNode(event.data));
+	terminalDisplay.appendChild(entry);
+
 	var new_data = parseMessage(event.data);
 	if (new_data.value.trim().length > 0) {    //sanity check; does the data received have an actual value, or is it just whitespace (common on startup)
 		addData(new_data);

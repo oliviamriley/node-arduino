@@ -6,15 +6,18 @@ Node.js app to visualize Arduino data in-browser
 ### Windows
 
 1. Download the Windows installer by clicking [here](https://community.csdt.rpi.edu/media/filer_public/99/b9/99b94be8-9378-4701-bbd6-df4a4453af0b/node-arduino-windows-102.zip).
-2. Click install.bat, and proceed through the NodeJS installer window.
-3. Launch the application by clicking node-arduino.bat. 
+2. Since the files you just downloaded came in a .zip archive, you will need to extract them to a normal folder. Open the archive by double-clicking it, then click "extract" at the top of the file explorer window. Choose a location to extract that will be easily accessible to you. 
+3. Navigate to the extracted folder, click install.bat, and proceed through the NodeJS installer window.
+4. Launch the application by clicking node-arduino.bat. 
 
 
 ### Ubuntu
 
 1. Download the Ubuntu installer by clicking [here](https://community.csdt.rpi.edu/media/filer_public/3c/f5/3cf5d7d6-9651-4b0a-b8ff-b9e98e521385/node-arduino_ubuntu_100.zip).
-2. Click install.sh, and enter the root password when prompted.
-3. Run node-arduino from the command line with "nodejs node-client.js"
+2. Unzip the archive.
+3. Click install.sh, and enter the root password when prompted.
+4. Run node-arduino from the command line with "nodejs node-client.js"
+
 
 ### macOS
 
