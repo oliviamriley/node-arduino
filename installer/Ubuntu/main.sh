@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd ../../bin
+
 apt-get update && apt-get upgrade
 apt-get install -y nodejs
 npm install serialport

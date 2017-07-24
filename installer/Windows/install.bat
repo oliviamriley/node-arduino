@@ -1,4 +1,11 @@
+cd install_files\
+
+msiexec /i "node-v6.11.0-x64.msi"
+
+cd ..\..\..\bin\
+
 call npm install npm@latest -g
-call npm install serialport --global
-call npm install ws --global
-pause
+call npm install serialport
+call npm install ws
+
+move %~dps0install_files\node-arduino.bat %~dps0..\..\
