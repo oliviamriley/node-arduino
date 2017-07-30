@@ -2,7 +2,7 @@
 
 USER=$(whoami)
 
-sudo ./main.sh $USER
+sudo install_files/main.sh $USER
 
 cd ../../
 
