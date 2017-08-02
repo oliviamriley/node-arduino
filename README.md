@@ -3,13 +3,6 @@ Node.js app to visualize Arduino data in-browser
 
 ## Install
 
-1. Download node-arduino by clicking [here](https://github.com/ethanmriley/node-arduino/archive/master.zip).
-2. Extract the files from the master.zip archive into an easily-accessible directory. 
-3. Navigate to the installers directory in the extracted folder.
-4. Choose the folder that matches your operating system (currently, only Windows and Ubuntu are supported). 
-5. Click the install file in that directory. I 
-
-
 ### Windows
 
 1. Download node-arduino by clicking [here](https://github.com/ethanmriley/node-arduino/archive/master.zip).
