@@ -1,7 +1,10 @@
 var SerialPort = require('serialport');
 var WebSocket = require('ws');
+var opn = require('opn');
 var wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 var manual = false;
+
+opn('browser/browser_client.html');
 
 if(process.argv[2] == "-p" || process.argv[2] == "--port") {
 	if(process.argv[3]) {
