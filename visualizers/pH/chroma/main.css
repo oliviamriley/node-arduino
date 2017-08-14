@@ -1,0 +1,16 @@
+#main {
+	height: 100vh;
+	width: 100vw;
+	background-color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#value {
+	position: absolute;
+	top: 45vh;
+	left: 47.5vw;
+	font-size: 2.5em;
+	color: black;
+}
