@@ -2,17 +2,18 @@
 const SerialPort = require('serialport');
 const WebSocket = require('ws');
 const os = require('os');
+var program = require('commander');
 var wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
-var manual = false;
 
-if(process.argv[2] == "-p" || process.argv[2] == "--port") {
-	if(process.argv[3]) {
-		manual = true;
-	}
-	else {
-		console.log("Err: no port name supplied with manual flag.")
-		process.exit(0);
-	}
+
+program
+	.version('1.4.0')
+	.option('-p, --port <p>', 'Specify serial port to connect to.')
+	.option('-B, --baud <b>', 'Specify baud rate for serial connection. Defaults to 9600 baud.', parseInt)
+	.parse(process.argv);
+
+if (typeof program.baud === 'undefined') {
+	program.baud = 9600;  //default to 9600 baud
 }
 
 
@@ -41,7 +42,8 @@ wss.broadcast = function broadcast(data) {
 var streamFromSerial = function streamFromSerial(portName) {
 
 	var Arduino = new SerialPort(portName, {
-		parser: SerialPort.parsers.readline('\r\n') //'\r\n' is the spacing character added by Arduino's Serial.println() function, so we use it to parse data
+		parser: SerialPort.parsers.readline('\r\n'), //'\r\n' is the spacing character added by Arduino's Serial.println() function, so we use it to parse data
+		baudRate: program.baud
 	});
 
 	Arduino.on('open', function() {
@@ -59,17 +61,13 @@ var streamFromSerial = function streamFromSerial(portName) {
 
 function initArduinoConnection() {
 
-	var portName = "";
-
-	if(process.argv[2] && (process.argv[2] == "-p" || process.argv[2] == "--port")) {
-		portName = process.argv[3];
-		streamFromSerial(portName);
+	if(typeof program.port !== 'undefined') {
+		streamFromSerial(program.port);
 	} else {
 		SerialPort.list(function(err, ports) {
 			ports.forEach(function(port) {
 				if(port.manufacturer && port.manufacturer.indexOf("Arduino") !== -1) { //connect to the first device we see that has "Arduino" in the manufacturer name
-					portName = port.comName;
-					streamFromSerial(portName);
+					streamFromSerial(port.comName);
 				}
 			});
 		});

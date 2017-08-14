@@ -11,7 +11,7 @@ npm install -g node-arduino
 
 
 ## Usage
-```node-arduino``` functions as server, reading data from a serial port, and sending this data out through a web socket on port 8080. 
+```node-arduino``` functions as a server, reading data from a serial port, and sending this data out through a web socket on port 8080. 
 The native ```WebSocket``` browser object is used as the client in this connection. 
 
 ```visualizers/``` in the ```node-arduino``` install directory contains the HTML and browser-side JavaScript for a variety of client visualizers. Opening any of these in a web browser will connect with the app. 
@@ -19,10 +19,11 @@ The native ```WebSocket``` browser object is used as the client in this connecti
 
 ### Command-line flags
 
-```--port -p ```
-Specify a serial port to read data from. 
+```-p --port```
+Specify a serial port to rconnect to. 
 
-
+```-B --baud``
+Specify a baud rate for serial connection. Defaults to 9600 baud.  
 
 	
 ## Arduino sketches for ```node-arduino```
