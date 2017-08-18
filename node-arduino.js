@@ -8,14 +8,14 @@ var wss = {},
 		visualizer = "";
 
 program
-	.version('1.6.0')
+	.version('1.6.1')
 	.option('-p, --port <p>', 'Specify serial port')
 	.option('-B, --baud <b>', 'Specify baud rate for serial connection', parseInt)
 	.option('-v --visualizer <v>', 'Specify visualizer')
 	.parse(process.argv);
 
 if(typeof program.visualizer === 'undefined') {
-	visualizer = "graph/graph_visualizer.html";
+	visualizer = "graph/graph.html";
 } else if (program.visualizer === 'color-scale') {
 	visualizer = "pH/color_scale/color_scale.html";
 } else if (program.visualizer === 'chroma') {
