@@ -2,12 +2,14 @@
 const SerialPort = require('serialport');
 const WebSocket = require('ws');
 const os = require('os');
+var opn = require('opn');
 var program = require('commander');
 var wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 
+opn(__dirname + "/visualizers/graph/browser_client.html")
 
 program
-	.version('1.4.0')
+	.version('1.5.0')
 	.option('-p, --port <p>', 'Specify serial port to connect to.')
 	.option('-B, --baud <b>', 'Specify baud rate for serial connection. Defaults to 9600 baud.', parseInt)
 	.parse(process.argv);
@@ -27,7 +29,7 @@ wss.on('connection', function(connection) {
 
 wss.broadcast = function broadcast(data) {
 	wss.clients.forEach(function sendData(client) {
-		if (client.readyState === 1) {   
+		if (client.readyState === 1) {
 			try {
 				client.send(data);
 			} catch(err) {

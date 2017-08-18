@@ -1,6 +1,6 @@
 {
   "name": "node-arduino",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A tool to visualize Arduino data in the browser.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ethanmriley/node-arudino#readme",
   "dependencies": {
     "commander": "^2.11.0",
+    "opn": "^5.1.0",
     "serialport": "4.0.7",
     "ws": "3.1.0"
   },
