@@ -1,6 +1,6 @@
 {
   "name": "node-arduino",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A tool to visualize Arduino data in the browser.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

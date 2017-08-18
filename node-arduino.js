@@ -4,20 +4,32 @@ const WebSocket = require('ws');
 const os = require('os');
 var opn = require('opn');
 var program = require('commander');
-var wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
-
-opn(__dirname + "/visualizers/graph/browser_client.html")
+var wss = {},
+		visualizer = "";
 
 program
-	.version('1.5.1')
-	.option('-p, --port <p>', 'Specify serial port to connect to.')
-	.option('-B, --baud <b>', 'Specify baud rate for serial connection. Defaults to 9600 baud.', parseInt)
+	.version('1.6.0')
+	.option('-p, --port <p>', 'Specify serial port')
+	.option('-B, --baud <b>', 'Specify baud rate for serial connection', parseInt)
+	.option('-v --visualizer <v>', 'Specify visualizer')
 	.parse(process.argv);
+
+if(typeof program.visualizer === 'undefined') {
+	visualizer = "graph/graph_visualizer.html";
+} else if (program.visualizer === 'color-scale') {
+	visualizer = "pH/color_scale/color_scale.html";
+} else if (program.visualizer === 'chroma') {
+	visualizer = "pH/chroma/chroma.html";
+}
+
+opn(__dirname + "/visualizers/" + visualizer);
+
 
 if (typeof program.baud === 'undefined') {
 	program.baud = 9600;  //default to 9600 baud
 }
 
+wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 
 wss.on('connection', function(connection) {
 	console.log("WebSocket connection established.");
