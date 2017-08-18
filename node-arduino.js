@@ -9,7 +9,7 @@ var wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
 opn(__dirname + "/visualizers/graph/browser_client.html")
 
 program
-	.version('1.5.0')
+	.version('1.5.1')
 	.option('-p, --port <p>', 'Specify serial port to connect to.')
 	.option('-B, --baud <b>', 'Specify baud rate for serial connection. Defaults to 9600 baud.', parseInt)
 	.parse(process.argv);

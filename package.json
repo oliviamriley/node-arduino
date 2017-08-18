@@ -1,13 +1,13 @@
 {
   "name": "node-arduino",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A tool to visualize Arduino data in the browser.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethanmriley/node-arudino.git"
+    "url": "git+https://github.com/ethanmriley/node-arduino.git"
   },
   "keywords": [
     "Arduino",
@@ -18,9 +18,9 @@
   "author": "Ethan Riley <ethanmriley@gmail.com> (https://github.com/ethanmriley)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ethanmriley/node-arudino/issues"
+    "url": "https://github.com/ethanmriley/node-arduino/issues"
   },
-  "homepage": "https://github.com/ethanmriley/node-arudino#readme",
+  "homepage": "https://github.com/ethanmriley/node-arduino#readme",
   "dependencies": {
     "commander": "^2.11.0",
     "opn": "^5.1.0",
