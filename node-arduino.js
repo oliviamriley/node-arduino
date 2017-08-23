@@ -8,10 +8,11 @@ var wss = {},
 		visualizer = "";
 
 program
-	.version('1.6.2')
+	.version('1.7.0')
 	.option('-p, --port <p>', 'Specify serial port')
-	.option('-B, --baud <b>', 'Specify baud rate for serial connection', parseInt)
-	.option('-v --visualizer <v>', 'Specify visualizer')
+	.option('-b, --baud <b>', 'Specify baud rate for serial connection', parseInt)
+	.option('-v, --visualizer <v>', 'Specify visualizer')
+	.option('-d, --delimiter <d>', 'Specify delimiter character')
 	.parse(process.argv);
 
 if(typeof program.visualizer === 'undefined') {
@@ -27,6 +28,9 @@ opn(__dirname + "/visualizers/" + visualizer);
 
 if (typeof program.baud === 'undefined') {
 	program.baud = 9600;  //default to 9600 baud
+}
+if (typeof program.delimite === 'undefined') {
+	program.delimiter = '\r\n'; //default to \r\n newline character (from Serial.println())
 }
 
 wss = new WebSocket.Server({host: '127.0.0.1', port: 8080});
@@ -56,7 +60,7 @@ wss.broadcast = function broadcast(data) {
 var streamFromSerial = function streamFromSerial(portName) {
 
 	var Arduino = new SerialPort(portName, {
-		parser: SerialPort.parsers.readline('\r\n'), //'\r\n' is the spacing character added by Arduino's Serial.println() function, so we use it to parse data
+		parser: SerialPort.parsers.readline(program.delimiter),
 		baudRate: program.baud
 	});
 

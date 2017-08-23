@@ -28,7 +28,7 @@ The native ```WebSocket``` browser object is used as the client in this connecti
 
    "```node-arduino -p /dev/ttyACM0```"
 
-* ```-B --baud```
+* ```-b --baud```
 
    Specify a baud rate for serial connection. Defaults to 9600 baud.
 
@@ -40,6 +40,11 @@ The native ```WebSocket``` browser object is used as the client in this connecti
 
    "```node-arduino -v color-scale```"
 
+* ```-d --delimiter```
+
+   Specify delimiter character(s) for parsing serial data. Defaults to ```\r\n```, the ```Serial.println()``` delimiter. 
+
+   "```node-arduino -d \n```"
 
 ## Arduino sketches for ```node-arduino```
 
