@@ -1,4 +1,5 @@
 var data = [[]],
+	refresh = {},
 	terminalDisplay = {},
 	autoscroll = true,
 	layout = {},
@@ -44,7 +45,7 @@ socket.onmessage = function receiveMessage(event) {
 	entry = document.createElement('li');
 	entry.appendChild(document.createTextNode(event.data));
 	terminalDisplay.appendChild(entry);        //add new data point to scrolling terminalDisplay div
-	
+
 	scroll("terminalDisplay");
 
 	new_data = parseMessage(event.data);
@@ -62,13 +63,13 @@ function parseMessage(message) {
 		data = {};
 
 	end_of_header = message.indexOf(":");
-	
+
 	if (end_of_header > -1) {                                   //if ":" isn't present, end_of_header === -1
 		header_ = message.substr(0, end_of_header);
 	}
-	
+
 	value_ = message.substr(end_of_header + 1, message.length); //assuming data sent in the format "header: value"
-	
+
 	data = {
 		header: header_,
 		value: value_
@@ -81,7 +82,7 @@ function addData(new_data) {
 	var dataset = [],
 		is_new_data = true,
 		new_trace = {},
-		new_time =  new Date(), 
+		new_time =  new Date(),
 		time_on_add = new_time.getTime() - initial_time,
 		i = 0;
 
@@ -112,6 +113,11 @@ function addData(new_data) {
 	} else {
 		Plotly.update('myChart', data, layout, {displayModeBar: false});  //update() will only add to existing data, but is quicker
 	}
+}
+
+refresh = document.getElementById("refresh");
+refresh.onclick = function(){
+	location.reload();
 }
 
 window.onbeforeunload = closeConnection; //close websocket on browser close or refresh

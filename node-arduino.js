@@ -8,7 +8,7 @@ var wss = {},
 		visualizer = "";
 
 program
-	.version('1.7.0')
+	.version('1.7.1')
 	.option('-p, --port <p>', 'Specify serial port')
 	.option('-b, --baud <b>', 'Specify baud rate for serial connection', parseInt)
 	.option('-v, --visualizer <v>', 'Specify visualizer')
