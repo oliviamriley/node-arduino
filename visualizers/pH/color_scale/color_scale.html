@@ -11,9 +11,9 @@
 		<div id="wrapper">
 		</div>
 
-		<img src="arrow.svg" id="pointer" style="position: absolute; top: 400px; left: 0px; height: 50px;">
+		<img src="arrow.svg" id="pointer" style="position: absolute; top: 400px; left: 15px; height: 50px;">
 
-		<div id="value" style="position: absolute; top: 550px; left: 45.5vw; font-size: 5em;">
+		<div id="value" style="position: absolute; top: 550px; left: 45%; font-size: 5em;">
 			start
 		</div>
 
@@ -26,7 +26,7 @@
 				socket = {},
 				value = {};
 
-			divColors = ["#ff8080", "#ff1a1a", "#ff751a", "#b34700", "#ffd1b3", "#ffd633", "#99e600", "#33ccff", "#b3b3ff", "#4d4dff", "#ccccff", "#cc99ff", "#9933ff", "#4d0099"];
+			divColors = ["#ff0000", "#ff4000", "#FF7F00", "#FFBF00", "#ffd633", "#ffff00", "#80ff00", "#00ff00", "#00b0FF", "#0000FF", "#4B0082", "#8000DD", "#bf00ff", "#ff00ff"];
 
 			windowWidth  = window.innerWidth;
 			wrapper = document.getElementById("wrapper");
@@ -49,7 +49,7 @@
 				new_div.innerHTML = i;
 				new_div.style.display = "flex";
 				new_div.style.justifyContent = "center";
-				new_div.style.paddingTop = "200px";
+				new_div.style.paddingTop = "700px";
 
 
 				new_div.style.left = divLeft + "px";

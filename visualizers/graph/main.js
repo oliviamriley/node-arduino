@@ -79,6 +79,14 @@ function parseMessage(message) {
 }
 
 function addData(new_data) {
+	var time = new Date();
+	var startTime; 	//get the start time and end time so that jump height can be calculated
+	var previous_data;
+	var prevTime;
+	var currentTime;
+	var duration;	//this stores the airtime
+	var jumpHeight;	//this caucluates the jump height
+	
 	var dataset = [],
 		is_new_data = true,
 		new_trace = {},
@@ -90,7 +98,18 @@ function addData(new_data) {
 		dataset = data[i];
 		if (dataset.header === new_data.header) { //if the header on the message matches any existing dataset, add the message's data to that dataset
 			dataset.x.push(time_on_add);          //x-axis is time by default
+			previous_data = new_data.value;
 			dataset.y.push(new_data.value);
+			if(previous_data.value - new_data.velue > 120){
+				startTime = time.getTime();
+				prevTime = startTime;
+			}
+			if(new_data.value - previous_data.value > 120){
+				startTime = time.getTime();
+				currententTime = startTime;
+				duration = currentTime - prevTime;
+				jumpHeight = 0.5 * 9.81 * Math.pow(duration/2, 2);
+			}
 			is_new_data = false;
 		}
 	}
