@@ -49,5 +49,50 @@ socket.onmessage = function receieveMessage(event){
 	left: pointerLeft + "px"
 	}, 500);
 	$("#value").text(event.data);
+	if(event.data >= 0 && event.data < 1){
+		document.getElementById("Ion Visualizer").src = "0.png";
+	}
+	else if(event.data >= 1 && event.data < 2){
+		document.getElementById("Ion Visualizer").src = "1.png";
+	}
+	else if(event.data >= 2 && event.data < 3){
+		document.getElementById("Ion Visualizer").src = "2.png";
+	}
+	else if(event.data >= 3 && event.data < 4){
+		document.getElementById("Ion Visualizer").src = "3.png";
+	}
+	else if(event.data >= 4 && event.data < 5){
+		document.getElementById("Ion Visualizer").src = "4.png";
+	}
+	else if(event.data >= 5 && event.data < 6){
+		document.getElementById("Ion Visualizer").src = "5.png";
+	}
+	else if(event.data >= 6 && event.data < 7){
+		document.getElementById("Ion Visualizer").src = "6.png";
+	}
+	else if(event.data >= 7 && event.data < 8){
+		document.getElementById("Ion Visualizer").src = "7.png";
+	}
+	else if(event.data >= 8 && event.data < 9){
+		document.getElementById("Ion Visualizer").src = "8.png";
+	}
+	else if(event.data >= 9 && event.data < 10){
+		document.getElementById("Ion Visualizer").src = "9.png";
+	}
+	else if(event.data >= 10 && event.data < 11){
+		document.getElementById("Ion Visualizer").src = "10.png";
+	}
+	else if(event.data >= 11 && event.data < 12){
+		document.getElementById("Ion Visualizer").src = "11.png";
+	}
+	else if(event.data >= 12 && event.data < 13){
+		document.getElementById("Ion Visualizer").src = "12.png";
+	}
+	else if(event.data >= 13 && event.data < 14){
+		document.getElementById("Ion Visualizer").src = "13.png";
+	}
+	else{
+		document.getElementById("Ion Visualizer").src = "14.png";
+	}
 }
 
