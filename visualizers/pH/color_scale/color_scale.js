@@ -43,7 +43,7 @@ value = document.getElementById
 socket = new WebSocket("ws://127.0.0.1:8080");
 
 socket.onmessage = function receieveMessage(event){
-	var pointerLeft = (event.data/15.0) * windowWidth;
+	var pointerLeft = (event.data/14.75) * windowWidth;
 
 	$("#pointer").animate({
 	left: pointerLeft + "px"
