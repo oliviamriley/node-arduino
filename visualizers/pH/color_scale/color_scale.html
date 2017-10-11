@@ -11,69 +11,23 @@
 		<div id="wrapper">
 		</div>
 
-		<img src="arrow.svg" id="pointer" style="position: absolute; top: 400px; left: 0px; height: 50px;">
+		<img src="arrow.svg" id="pointer" style="position: absolute; top: 675px; left: 11px; height: 50px;">
 
-		<div id="value" style="position: absolute; top: 550px; left: 45.5vw; font-size: 5em;">
+		<div id="value" style="position: absolute; top: 170px; left: 72%; font-size: 3em;">
 			start
 		</div>
 
+		<!--The following source contains the algorithm to generate the color_scale-->
+		<img src="Ion Visualizer.png" id="Ion Visualizer" style="position: absolute; top: 50px; left: 37%; height: 300px;">
 
-		<script>
-			var windowWidth = 0,
-				divWidth = 0,
-				wrapper = {},
-				divColors = [],
-				socket = {},
-				value = {};
+		<img src="Legend.png" id="Legend" style="position: absolute; top: 150px; left: 10%; height: 15%;">
 
-			divColors = ["#ff8080", "#ff1a1a", "#ff751a", "#b34700", "#ffd1b3", "#ffd633", "#99e600", "#33ccff", "#b3b3ff", "#4d4dff", "#ccccff", "#cc99ff", "#9933ff", "#4d0099"];
-
-			windowWidth  = window.innerWidth;
-			wrapper = document.getElementById("wrapper");
-			divWidth = windowWidth / 14.0;
-
-
-			for(var i = 0; i < 14; i++) {
-				var new_div = {},
-					divLeft = 0;
-
-
-				new_div = document.createElement("div");
-				divLeft = divWidth*i;
-
-				new_div.id = i;
-				new_div.style.position = "absolute";
-				new_div.style.top = "0px";
-				new_div.style.height = "100px";
-				new_div.style.width = divWidth + "px";
-				new_div.innerHTML = i;
-				new_div.style.display = "flex";
-				new_div.style.justifyContent = "center";
-				new_div.style.paddingTop = "200px";
-
-
-				new_div.style.left = divLeft + "px";
-				new_div.style.backgroundColor = divColors[i];
-
-				wrapper.appendChild(new_div);
-			}
-
-			value = document.getElementById
-
-			socket = new WebSocket("ws://127.0.0.1:8080");
-
-			socket.onmessage = function receieveMessage(event){
-				var pointerLeft = (event.data/14.0) * windowWidth;
-
-				$("#pointer").animate({
-						left: pointerLeft + "px"
-				}, 500);
-
-				$("#value").text(event.data);
-			}
-
-		</script>
+		<div id="explanation" style="position: absolute; top: 360px; left: 9%; font-size: 1.2em;">
+			Every time the pH value increases by 1, the amount of acid ions decrease by 10 times, and the amount of base ions increase by 10 times.
+		</div>
+		<img src="ph-of-common-foods-and-chemicals.png" id="pH objects" style="position: absolute; top: 400px; left: 0%; width: 101%; height: 275px">
+		
+		<script src = "color_scale.js"></script>
 
 	</body>
-
 </html>
