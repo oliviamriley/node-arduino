@@ -11,21 +11,43 @@
 		<div id="wrapper">
 		</div>
 
-		<img src="arrow.svg" id="pointer" style="position: absolute; top: 675px; left: 11px; height: 50px;">
+		<img src="arrow.svg" id="pointer" style="position: absolute; top: 95%; left: 11px; height: 50px;">
 
 		<div id="value" style="position: absolute; top: 170px; left: 72%; font-size: 3em;">
 			start
 		</div>
 
+		<style>
+		.centerImage
+		{
+			position:absolute;
+			top: 30px;
+		    left:0;
+		    right:0;
+		    margin:auto;
+		}
+		</style>
+
+		<style>
+		.centerText
+		{
+			position: relative;
+			float: left;
+			top: 340px;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 1.2em;
+		}
+		</style>
 		<!--The following source contains the algorithm to generate the color_scale-->
-		<img src="Ion Visualizer.png" id="Ion Visualizer" style="position: absolute; top: 50px; left: 37%; height: 300px;">
+		<img src="Ion Visualizer.png" class = "centerImage" height = "300px">
 
 		<img src="Legend.png" id="Legend" style="position: absolute; top: 150px; left: 10%; height: 15%;">
 
-		<div id="explanation" style="position: absolute; top: 360px; left: 9%; font-size: 1.2em;">
+		<div id="explanation" class = "centerText">
 			Every time the pH value increases by 1, the amount of acid ions decrease by 10 times, and the amount of base ions increase by 10 times.
 		</div>
-		<img src="ph-of-common-foods-and-chemicals.png" id="pH objects" style="position: absolute; top: 400px; left: 0%; width: 101%; height: 275px">
+		<img src="ph-of-common-foods-and-chemicals.png" id="pH objects" style="position: absolute; top: 370px; left: 0%; width: 100%; height: 40%">
 		
 		<script src = "color_scale.js"></script>
 

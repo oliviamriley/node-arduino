@@ -23,8 +23,8 @@ for(var i = 0; i < 15; i++) {
 
 	new_div.id = i;
 	new_div.style.position = "absolute";
-	new_div.style.top = "402px";
-	new_div.style.height = "230px";
+	new_div.style.bottom = "0%";
+	new_div.style.height = "20%";
 	new_div.style.width = divWidth + "px";
 	//new_div.innerHTML = i; 
 	new_div.style.display = "flex";
